@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.blog.dao.LoginMapper">
+
+    <select id="querryAdminByName" parameterType="String" resultType="admin">
+        select * from blog.admin where name = #{name}
+    </select>
+    <select id="querryAdminByNameAndPwd" parameterType="String" resultType="admin">
+        select * from blog.admin where name = #{name} and pwd = #{pwd}
+    </select>
+
+    <insert id="addAdmin" parameterType="admin" >
+        insert into blog.admin(id, name, pwd, email, gender, create_date) values (#{id},#{name},#{pwd},#{email},#{gender},#{createDate})
+    </insert>
+
+</mapper>

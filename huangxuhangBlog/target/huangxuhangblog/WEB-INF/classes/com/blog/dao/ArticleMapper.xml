@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blog.dao.ArticleMapper">
+
+
+     <insert id="insterArticle" >
+        insert into blog.article(title,uid, content, creat_date) values (#{title},#{uid},#{content},#{createDate})
+     </insert>
+
+    <select id="queryAllArticle" resultType="article">
+        select * from blog.article where uid = #{uid} order by creat_date desc 
+    </select>
+
+    <delete id="deleteBlog" >
+        delete from blog.article where id = #{id}
+    </delete>
+
+    <select id="queryArticle" resultType="article">
+        select * from blog.article where id = #{id}
+    </select>
+
+    <update id="updateBlog">
+        update blog.article set title = #{title} ,content = #{content} where id = #{id}
+    </update>
+
+    <select id="querryHotBlog" resultType="article">
+        select * from blog.article order by click desc limit 0,6
+    </select>
+
+    <update id="addClick">
+        update  blog.article set click = #{click} where id = #{id}
+    </update>
+
+    <select id="querryAdminByUid" resultType="admin">
+        select * from blog.admin where id = #{uid}
+    </select>
+
+    <insert id="comment" >
+        INSERT INTO blog.comment(content, bid, admin_name,create_time) values (#{content},#{bid},#{adminName},#{createTime})
+    </insert>
+
+    <select id="queryCommentByBid" resultType="comment">
+        select * from blog.comment where bid = #{bid}
+    </select>
+
+    <select id="queryAllArticles" resultType="article">
+        select * from blog.article
+    </select>
+
+    <select id="querryArticlesByTitle" resultType="article">
+        select * from blog.article where title = #{title}
+    </select>
+</mapper>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blog.dao.DiscussMapper" >
+
+    <select id="querryDiscussById" resultType="discuss">
+        select * from blog.discuss where id = #{id}
+    </select>
+    <select id="querryAllDiscuss" resultType="discuss">
+        select * from blog.discuss
+    </select>
+
+    <insert id="addTalk" parameterType="discuss">
+        insert into blog.discuss(content, admin_name, create_time) values (#{content},#{adminName},#{createTime})
+    </insert>
+
+    <select id="querryDiscussCommentByDid" parameterType="int" resultType="DiscussComment">
+        select * from blog.discusscomment where did = #{did}
+    </select>
+
+    <insert id="addTalkComment" parameterType="DiscussComment">
+        insert into blog.discusscomment(content, did, admin_name, create_time) values (#{content},#{did},#{adminName},#{createTime})
+    </insert>
+
+
+
+</mapper>
